@@ -7,14 +7,14 @@
 	String nickname = request.getParameter("nickname");
 	
 	if (id == null || password == null || nickname == null) {
-		response.sendRedirect("registPage.jsp");
+		response.sendRedirect("registPage.jsp?error=1");
 	} else {
 		MemberService service = new MemberService(new MemberDAO());
 		Member member = new Member(id, password, nickname);
 		if (service.regist(member)) {
 			response.sendRedirect("main.jsp");
 		} else {
-			response.sendRedirect("registPage.jsp");
+			response.sendRedirect("registPage.jsp?error=2");
 		}
 	}
 %>
